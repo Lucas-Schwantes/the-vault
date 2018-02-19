@@ -1,0 +1,49 @@
+    page-items {
+        .poster {
+            padding: 0px;
+        }
+        button[ion-fab] {
+            overflow: visible;
+            position: relative;
+            ion-label {
+                position: absolute;
+                top: -8px;
+                right: 40px;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.7);
+                line-height: 24px;
+                padding: 4px 8px;
+                border-radius: 4px;
+            }
+        }
+        .fab {
+            contain: layout;
+        }
+        .littleStrip {
+            width: 3.33333%;
+            max-width: 3.33333%;
+            // background: linear-gradient(to top, #dce35b, #45b649);
+            background-color: #13b513;
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .littleStripNot {
+            width: 3.33333%;
+            max-width: 3.33333%;
+            //background: linear-gradient(to bottom, #c21500, #ffc500);
+            background-color: #c21500;
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .cardItem {
+            border-radius: 2px 8px 8px 2px;
+        }
+        .iconess {
+            max-width: 10.66667%;
+        }
+        .titulo {
+            font-size: 20px;
+        }
+        .segment-md .segment-button.activated,
+        .segment-md .segment-button.segment-activated {
+            border-color: white;
+        }
+    }

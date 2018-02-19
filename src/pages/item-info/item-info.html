@@ -1,0 +1,61 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{item.Title}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="  background: linear-gradient(to top, #2980b9, #2c3e50); ">
+    <ion-card>
+        <img src="{{item.Poster}}">
+    </ion-card>
+    <ion-card>
+
+
+        <div padding>
+            <div text-center class="titulo">
+                <b> - {{item.Title}} - </b>
+            </div>
+            <div text-center class="ano">
+                ({{item.Year}})
+            </div>
+
+            <ion-grid text-center>
+                <ion-row>
+                    <ion-col *ngFor="let rating of item.Ratings" class="notaMeio">
+                        <div style="font-size: 12px">{{rating.Source}}</div>
+                        {{rating.Value}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </ion-card>
+    <ion-card>
+        <div padding>
+
+
+            <hr>
+            <b>Director:</b> {{item.Director}}
+            <hr>
+            <p><b>The plot: </b>{{item.Plot}}</p>
+            <hr>
+            <b>Actors:</b> {{item.Actors}}
+            <hr>
+            <b>Runtime:</b> {{item.Runtime}}
+            <hr>
+            <b>Country:</b> {{item.Country}}
+            <hr>
+            <b>Language:</b> {{item.Language}}
+            <hr>
+            <b>Genres:</b> {{item.Genre}}
+            <hr>
+            <b>Relesed:</b> {{item.Released}}
+
+
+        </div>
+
+    </ion-card>
+
+</ion-content>

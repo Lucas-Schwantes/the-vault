@@ -1,0 +1,70 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button icon-only (click)="dismissModal()">
+                            <ion-icon name="close"></ion-icon>
+                            Close
+                        </button>
+        </ion-buttons>
+
+        <ion-title>New Item</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <div>
+            <ion-segment color="primary" [(ngModel)]="type">
+                <ion-segment-button value="movie">
+                    Movie
+                </ion-segment-button>
+                <ion-segment-button value="series">
+                    TV
+                </ion-segment-button>
+            </ion-segment>
+        </div>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-input type="text" value="" placeholder="Search" [(ngModel)]="input"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-3>
+                <button ion-button color="light" (click)="search()">Search</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list>
+        <ion-list-header text-center *ngIf="!result?.length > 0">
+            Go on, search for something :)
+        </ion-list-header>
+        <ion-card *ngFor="let item of result">
+            <ion-grid no-padding>
+                <ion-row style="align-items: center">
+                    <ion-col col-2 no-padding>
+                        <img src={{item.Poster}} />
+                    </ion-col>
+                    <ion-col col-8>
+                        <div padding>
+                            <b style="font-size: 18px;">{{item.Title}}</b>
+                            <div>{{item.Year}}</div>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 style="padding: 8px">
+                        <button ion-button block icon-only (click)="add(item)">
+                            <ion-icon name="add"></ion-icon>
+                        </button>
+                        <button ion-button block icon-only (click)="add(item)">
+                                <ion-icon name="help"></ion-icon>
+                            </button>
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-card>
+    </ion-list>
+
+</ion-content>

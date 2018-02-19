@@ -1,0 +1,17 @@
+page-item-info {
+    .titulo {
+        padding-bottom: 5px;
+        font-size: 24px;
+    }
+    .ano {
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    .notaMeio {
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .row {
+        align-items: center;
+    }
+}

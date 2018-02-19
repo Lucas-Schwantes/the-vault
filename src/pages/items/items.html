@@ -1,0 +1,189 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Items</ion-title>
+        <ion-buttons start>
+            <button ion-button icon-only (click)="changeExibitMode()">
+                          <ion-icon name={{exibitMode}}></ion-icon>
+                        </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+        <!--<ion-searchbar (ionInput)="getWatchedItems($event)"></ion-searchbar>-->
+        <ion-segment [(ngModel)]="mode">
+            <ion-segment-button value="notWatched" style="color: white">
+                To-Be-Watched
+            </ion-segment-button>
+            <ion-segment-button value="watched" style="color: white">
+                Watched
+            </ion-segment-button>
+        </ion-segment>
+
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content style="  background: linear-gradient(to top, #2980b9, #2c3e50); ">
+    <div [ngSwitch]="mode">
+        <div *ngSwitchCase="'watched'">
+            <div [ngSwitch]="exibitMode">
+
+                <div *ngSwitchCase="'list'">
+                    <ion-list>
+                        <ion-list-header text-center *ngIf="!watchedItems?.length > 0">
+                            No items here yet... Go ahead, add something!
+                        </ion-list-header>
+                        <ion-card *ngFor="let item of watchedItems" class="cardItem">
+                            <ion-grid no-padding>
+                                <ion-row>
+                                    <ion-col col-4 no-padding>
+                                        <div style="margin: 5px; ">
+                                            <img style="box-shadow: 1px 0px 20px 1px #000000b0;" src={{item.Poster}} />
+                                        </div>
+
+                                    </ion-col>
+                                    <ion-col>
+                                        <div padding style="padding:12px 0px 12px 12px">
+                                            <b class="titulo">{{item.Title}}</b>
+                                            <div>{{item.Director}}</div>
+                                            <div>{{item.Year}}</div>
+                                            <ion-badge *ngFor="let rating of item.Ratings">
+                                                {{ rating.Value}}
+                                            </ion-badge>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col col-2 text-center class="iconess">
+                                        <button ion-button color="light" clear icon-only (click)="itemInfo(item)">
+                                                        <ion-icon name='help' is-active="false"></ion-icon>
+                                                    </button>
+                                        <button ion-button color="light" clear icon-only (click)="itemDelete(item)">
+                                                            <ion-icon name='trash' is-active="false"></ion-icon>
+                                                        </button>
+                                    </ion-col>
+                                    <ion-col col-1 class="littleStrip">
+                                    </ion-col>
+
+
+
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card>
+
+                    </ion-list>
+                </div>
+
+                <div *ngSwitchCase="'grid'">
+                    <ion-list>
+                        <ion-list-header text-center *ngIf="!watchedItems?.length > 0">
+                            No items here yet... Go ahead, add something!
+                        </ion-list-header>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-4 no-padding *ngFor="let item of watchedItems" class="cardItem" (click)="itemInfo(item)">
+                                    <div style="margin: 2px;">
+                                        <img src={{item.Poster}} style="    max-height: 166px;
+                                        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.68);" />
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-list>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div *ngSwitchCase="'notWatched'">
+            <div [ngSwitch]="exibitMode">
+
+                <div *ngSwitchCase="'list'">
+                    <ion-list>
+                        <ion-list-header text-center *ngIf="!notWatchedItems?.length > 0">
+                            No items here yet... Go ahead, add something!
+                        </ion-list-header>
+                        <ion-card *ngFor="let item of notWatchedItems" class="cardItem">
+                            <ion-grid no-padding>
+                                <ion-row>
+                                    <ion-col col-4 no-padding>
+                                        <div style="margin: 5px; ">
+                                            <img style="box-shadow: 1px 0px 20px 1px #000000b0;" src={{item.Poster}} />
+                                        </div>
+
+                                    </ion-col>
+                                    <ion-col>
+                                        <div padding style="padding:12px 0px 12px 12px">
+                                            <b class="titulo">{{item.Title}}</b>
+                                            <div>{{item.Director}}</div>
+                                            <div>{{item.Year}}</div>
+                                            <ion-badge *ngFor="let rating of item.Ratings">
+                                                {{ rating.Value}}
+                                            </ion-badge>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col col-2 text-center class="iconess">
+                                        <button ion-button color="light" clear icon-only (click)="itemInfo(item)">
+                                                                <ion-icon name='help' is-active="false"></ion-icon>
+                                                            </button>
+                                        <button ion-button color="light" clear icon-only (click)="itemDelete(item)">
+                                                                    <ion-icon name='trash' is-active="false"></ion-icon>
+                                                                </button>
+                                        <button ion-button color="light" clear icon-only (click)="watch(item)">
+                                                                    <ion-icon name='checkmark' is-active="false"></ion-icon>
+                                                                </button>
+                                    </ion-col>
+                                    <ion-col col-1 class="littleStripNot">
+                                    </ion-col>
+
+
+
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card>
+
+                    </ion-list>
+                </div>
+
+                <div *ngSwitchCase="'grid'">
+                    <ion-list>
+                        <ion-list-header text-center *ngIf="!notWatchedItems?.length > 0">
+                            No items here yet... Go ahead, add something!
+                        </ion-list-header>
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-4 no-padding *ngFor="let item of notWatchedItems" class="cardItem" (click)="itemInfo(item)">
+                                    <div style="margin: 2px;">
+                                        <img src={{item.Poster}} style="    max-height: 166px;
+                                        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.68);" />
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-list>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ion-fab bottom right>
+        <button ion-fab>
+            <ion-icon name="add"></ion-icon>
+            
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="primary" (click)="newItem('movie')">
+                <ion-icon name="film"></ion-icon>
+                <ion-label>Movie</ion-label>
+            </button>
+            <button ion-fab color="primary" (click)="newItem('series')">
+                <ion-icon name="closed-captioning"></ion-icon>
+                <ion-label>TV</ion-label>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>
